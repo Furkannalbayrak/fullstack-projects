@@ -16,6 +16,51 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/id/:id", async (req, res) => {
+    const parseID = parseInt(req.params.id);
+    if (isNaN(parseID)) {
+        return res.status(400).send("Gecersiz ID");
+    }
+
+    try {
+        const result = await pool.query(
+             `SELECT u.id, u.name, u.surname, u.email, u.department_id, d.department_name from users u
+            left join departments d
+            on u.department_id = d.id
+            where u.id = $1`,
+            [parseID]
+        );
+        if (result.rows.length === 0) {
+            return res.status(404).send("Kullanıcı bulunamadı");
+        }
+        res.status(200).json(result.rows);
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server Error !");
+    }
+});
+
+router.get("/name/:name", async (req, res) => {
+    const parseName = req.params.name;
+
+    try {
+        const result = await pool.query(
+            `SELECT u.id, u.name, u.surname, u.email, u.department_id, d.department_name from users u
+            left join departments d
+            on u.department_id = d.id
+            where lower(name) like lower($1)
+            order by u.id`,
+            [`%${parseName}%`]
+        );
+        res.status(200).json(result.rows);
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server Error !");
+    }
+})
+
 router.post("/", async (req, res) => {
     const { name, surname, email, department_id } = req.body;
     try {
@@ -32,34 +77,11 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.get("/:id", async (req, res) => {
-    const parseID = parseInt(req.params.id);
-    if (isNaN(parseID)) {
-        res.status(400).send("Gecersiz ID");
-    }
-
-    try {
-        const result = await pool.query(
-            `select * from users
-            where id = $1`,
-            [parseID]
-        );
-        if (result.rows.length === 0) {
-            return res.status(404).send("Kullanıcı bulunamadı");
-        }
-        res.status(200).json(result.rows);
-
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send("Server Error !");
-    }
-});
-
 router.put("/:id", async (req, res) => {
     const parseID = parseInt(req.params.id);
     const { name, surname, email, department_id } = req.body;
     if (isNaN(parseID)) {
-        res.status(400).send("Gecersiz ID");
+        return res.status(400).send("Gecersiz ID");
     }
 
     try {
@@ -83,8 +105,8 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     const parseID = parseInt(req.params.id);
-    if(isNaN(parseID)){
-        res.status(400).send("Gecersiz ID");
+    if (isNaN(parseID)) {
+        return res.status(400).send("Gecersiz ID");
     }
 
     try {
@@ -94,7 +116,7 @@ router.delete("/:id", async (req, res) => {
             RETURNING *`,
             [parseID]
         );
-        if(result.rows.length === 0){
+        if (result.rows.length === 0) {
             return res.status(404).send("Kullanıcı bulunamadı");
         }
         res.status(200).send("Kullanıcı başarıyla silindi");
