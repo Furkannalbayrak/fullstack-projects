@@ -2,9 +2,11 @@ import express from 'express'
 import pool from './database.js'
 import userRoutes from './routes/users.js'
 import departmentRoutes from './routes/departments.js'
+import cors from "cors";
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/users", userRoutes);
 app.use("/departments", departmentRoutes);
