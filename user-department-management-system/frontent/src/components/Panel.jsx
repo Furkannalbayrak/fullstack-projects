@@ -51,10 +51,10 @@ function Panel() {
             controlUser && (
               <div>
                 <ul className='text-xl w-11/12 space-y-1 flex flex-col'>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Kullanıcıları Listele</li>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Kullanıcı Ekle</li>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Kullanıcı Düzenle</li>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Kullanıcı Sil</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Kullanıcıları Listele</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Kullanıcı Ekle</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Kullanıcı Düzenle</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Kullanıcı Sil</li>
                 </ul>
               </div>
             )
@@ -87,10 +87,10 @@ function Panel() {
             controlDepartment && (
               <div>
                 <ul className='text-xl w-11/12 space-y-1 flex flex-col'>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Departmanları Listele</li>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Departman Ekle</li>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Departman Düzenle</li>
-                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800'>Departman Sil</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departmanları Listele</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departman Ekle</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departman Düzenle</li>
+                  <li className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departman Sil</li>
                 </ul>
               </div>
             )
