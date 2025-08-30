@@ -9,8 +9,7 @@ function App() {
       <div>
         <Panel />
       </div>
-      <div>
-        <Hero />
+      <div className='ml-80 w-full'>
         <RouterConfig />
       </div>
     </div>
