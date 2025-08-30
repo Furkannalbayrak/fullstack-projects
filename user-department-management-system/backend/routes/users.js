@@ -62,7 +62,12 @@ router.get("/name/:name", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    const { name, surname, email, department_id } = req.body;
+    let { name, surname, email, department_id } = req.body;
+
+    if(department_id === ""){
+        department_id = null;
+    }
+    
     try {
         const result = await pool.query(
             `insert into users (name, surname, email, department_id)
@@ -79,7 +84,11 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     const parseID = parseInt(req.params.id);
-    const { name, surname, email, department_id } = req.body;
+    let { name, surname, email, department_id } = req.body;
+
+    if(department_id === ""){
+        department_id = null;
+    }
     if (isNaN(parseID)) {
         return res.status(400).send("Gecersiz ID");
     }
