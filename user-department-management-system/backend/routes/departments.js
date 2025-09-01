@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/add-department", async (req, res) => {
     const { department_name } = req.body;
     try {
         const result = await pool.query(
@@ -52,7 +52,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/id/:id", async (req, res) => {
     const parseID = parseInt(req.params.id);
     const { department_name } = req.body;
 
@@ -79,7 +79,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/id/:id", async (req, res) => {
     const parseID = parseInt(req.params.id);
     if(isNaN(parseID)){
         res.status(400).send("Gecersiz ID");

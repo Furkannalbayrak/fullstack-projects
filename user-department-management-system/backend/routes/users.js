@@ -61,7 +61,7 @@ router.get("/name/:name", async (req, res) => {
     }
 })
 
-router.post("/", async (req, res) => {
+router.post("/add-user", async (req, res) => {
     let { name, surname, email, department_id } = req.body;
 
     if(department_id === ""){
@@ -82,7 +82,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/id/:id", async (req, res) => {
     const parseID = parseInt(req.params.id);
     let { name, surname, email, department_id } = req.body;
 
@@ -112,7 +112,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/id/:id", async (req, res) => {
     const parseID = parseInt(req.params.id);
     if (isNaN(parseID)) {
         return res.status(400).send("Gecersiz ID");
