@@ -6,7 +6,6 @@ function AllUsers() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-
         const getData = async () => {
             try {
                 const response = await axios.get("http://localhost:3000");
