@@ -37,8 +37,8 @@ function AddUser() {
 
   return (
     <div className='w-full h-screen bg-gray-200'>
-      <div className='max-w-3xl mx-auto h-screen p-14'>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-10 p-16 text-xl font-roboto rounded-3xl bg-white'>
+      <div className='max-w-3xl mx-auto h-screen lg:p-14 p-10'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-10 lg:p-16 p-12 lg:text-xl md:text-lg text-md font-roboto rounded-3xl bg-white'>
           <input
             type="text"
             name='name'
@@ -66,13 +66,13 @@ function AddUser() {
             className='bg-gray-200 px-5 py-3 rounded-lg outline-none'
             placeholder='Email giriniz' />
 
-          <input
+          <textarea
             type="text"
             name='department_id'
             value={formData.department_id}
             onChange={handleChange}
             pattern='[1-8]?'
-            className='bg-gray-200 px-5 py-3 rounded-lg outline-none'
+            className='bg-gray-200 px-5 py-3 rounded-lg outline-none resize-none'
             placeholder='Departman numarası giriniz (1-8) veya boş bırakın' />
 
           <button type='submit' className='bg-blue-500 hover:bg-blue-600 transition duration-100 p-2 rounded-3xl w-40 mx-auto text-white'>Ekle</button>
