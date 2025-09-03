@@ -34,14 +34,14 @@ function UpdateDepartment() {
 
   return (
     <div className='w-full h-screen bg-gray-200'>
-      <div className='max-w-3xl mx-auto h-screen p-14 '>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-8 p-16 text-xl font-roboto rounded-3xl bg-white'>
-          <input
+      <div className='max-w-3xl mx-auto h-screen lg:p-14 p-10'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-8 lg:p-16 p-12 lg:text-xl text-lg font-roboto rounded-3xl bg-white'>
+          <textarea
             type="number"
             required
             value={id}
             onChange={(e) => setId(e.target.value)}
-            className='bg-gray-200 px-5 py-3 rounded-lg outline-none'
+            className='bg-gray-200 px-5 py-3 rounded-lg outline-none resize-none'
             placeholder="Güncellemek istediğiniz departmanın ID'sini giriniz" />
 
           <input

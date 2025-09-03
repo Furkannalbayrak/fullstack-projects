@@ -29,8 +29,8 @@ function AddDepartment() {
 
   return (
     <div className='w-full h-screen bg-gray-200'>
-      <div className='max-w-3xl mx-auto h-screen p-14'>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-10 p-16 text-xl font-roboto rounded-3xl bg-white'>
+      <div className='max-w-3xl mx-auto h-screen lg:p-14 p-10'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-10 lg:p-16 p-12 lg:text-xl text-lg font-roboto rounded-3xl bg-white'>
           <input
             type="text"
             name='department_name'
