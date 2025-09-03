@@ -14,20 +14,27 @@ function Panel() {
   const handleClickUser = () => {
     setControlUser(!controlUser);
   }
-  const handleClickDepartment = ()=>{
+  const handleClickDepartment = () => {
     setControlDepartment(!controlDepartment);
   }
 
   const panelUsers = [
-    {text: "Kullanıcıları Listele", path: "/users/all-users" },
-    {text: "Kullanıcı Ekle", path: "/users/add-user"},
-    {text: "Kullanıcı Düzenle", path: "/users/update-user"},
-    {text: "Kullanıcı Sil", path: "/users/delete-user"},
+    { text: "Kullanıcıları Listele", path: "/users/all-users" },
+    { text: "Kullanıcı Ekle", path: "/users/add-user" },
+    { text: "Kullanıcı Düzenle", path: "/users/update-user" },
+    { text: "Kullanıcı Sil", path: "/users/delete-user" },
+  ]
+
+  const panelDepartments = [
+    { text: "Departmanları Listele", path: "/departments/all-departments" },
+    { text: "Departman Ekle", path: "/departments/add-department" },
+    { text: "Departman Düzenle", path: "/departments/update-department" },
+    { text: "Departman Sil", path: "/departments/delete-department" },
   ]
 
   return (
     <div>
-      <div className='w-80 h-screen bg-gray-800 text-white fixed'>
+      <div className='w-80 h-screen bg-gray-800 text-white lg:fixed lg:block hidden'>
 
         <div className=' font-bold text-3xl p-7'>
           Albayrak.A.Ş
@@ -61,9 +68,10 @@ function Panel() {
               <div>
                 <ul className='text-xl w-11/12 space-y-1 flex flex-col'>
                   {
-                    panelUsers.map((element, index)=>(
-                      <li key={index} className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'
-                        onClick={()=> navigate(element.path)}
+                    panelUsers.map((element, index) => (
+                      <li key={index}
+                        className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'
+                        onClick={() => navigate(element.path)}
                       >{element.text}</li>
                     ))
                   }
@@ -98,10 +106,14 @@ function Panel() {
             controlDepartment && (
               <div>
                 <ul className='text-xl w-11/12 space-y-1 flex flex-col'>
-                  <li onClick={()=> navigate("/departments/all-departments")} className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departmanları Listele</li>
-                  <li onClick={()=> navigate("/departments/add-department")} className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departman Ekle</li>
-                  <li onClick={()=> navigate("/departments/update-department")} className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departman Düzenle</li>
-                  <li onClick={()=> navigate("/departments/delete-department")} className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'>Departman Sil</li>
+                  {
+                    panelDepartments.map((element, index) => (
+                      <li key={index}
+                        className='p-2 pl-4 ml-4 rounded-md  hover:bg-blue-800 cursor-pointer'
+                        onClick={() => navigate(element.path)}
+                      >{element.text}</li>
+                    ))
+                  }
                 </ul>
               </div>
             )
