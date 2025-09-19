@@ -6,21 +6,23 @@ function AddDepartment() {
   const [formData, setFormData] = useState({
     department_name: "",
   });
-  
-  const handleChange = (e)=>{
+
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await axios.post("http://localhost:3000/departments/add-department", formData);
       alert("Departman başarıyla eklendi");
-      setData("");
+      setFormData({
+        department_name: "",
+      });
 
     } catch (error) {
       console.error(error);
@@ -38,7 +40,7 @@ function AddDepartment() {
             onChange={handleChange}
             required
             className='bg-gray-200 px-5 py-3 rounded-lg outline-none'
-            placeholder="Departman Adı giriniz "/>
+            placeholder="Departman Adı giriniz " />
 
           <button type='submit' className='bg-blue-500 hover:bg-blue-600 transition duration-100 p-2 rounded-3xl w-40 mx-auto text-white'>Ekle</button>
         </form>
