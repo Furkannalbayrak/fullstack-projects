@@ -1,24 +1,29 @@
 import express from 'express'
 import pool from './database.js'
 import cors from 'cors'
-import { parse } from 'dotenv';
+import authenticateToken from './middleware/authenticateToken.js'
+import loginRoute from './login.js'
+import registerRoute from './register.js'
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
+app.use('/api', registerRoute);
+app.use('/api', loginRoute);
 
-app.get('/api/todos', async (req, res) => {
-    
+app.get('/api/todos', authenticateToken, async (req, res) => {
+    const userID = req.user.id;
+
     try {
         const result = await pool.query(
             `select * from todos 
             where user_id = $1`,
-            [parseID]
-        )
+            [userID]
+        );
 
-        if(result.rows.length === 0){
-            res.status(404).send("Kullanıcı bulunamadı");
+        if (result.rows.length === 0) {
+            return res.status(404).send("Kullanıcı bulunamadı");
         }
         res.status(200).json(result.rows);
 
@@ -29,40 +34,45 @@ app.get('/api/todos', async (req, res) => {
 });
 
 
-app.post('/api/todos', async (req, res)=>{
+app.post('/api/todos', authenticateToken, async (req, res) => {
+    const userID = req.user.id
+    const { text } = req.body;
 
     try {
         const result = await pool.query(
-            `INSERT INTO todos (user_id, title, description)
-            values($1, $2, $3)
+            `INSERT INTO todos (user_id, text)
+            values($1, $2)
             RETURNING *`,
-            [userID, title, description]
+            [userID, text]
         );
-        res.status(200).json(result.rows[0]); 
+        res.status(200).json(result.rows[0]);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Server Error !");
     }
 });
 
-app.put('/api/todos/:id', async (req, res)=>{
+app.put('/api/todos/:id', authenticateToken, async (req, res) => {
     const todoID = parseInt(req.params.id);
-    if(isNaN(todoID)){
-        res.send(400).send("Gecersiz ID");
+    if (isNaN(todoID)) {
+        return res.status(400).send("Gecersiz ID");
     }
+
+    const { text, is_done } = req.body;
+    const userID = req.user.id;
 
     try {
         const result = await pool.query(
             `UPDATE todos
-            set title = $1, description = $2, is_done = $3
-            where id =  $4 AND user_id = $5
+            set text = $1, is_done = $2, updated_at = now()
+            where id =  $3 AND user_id = $4
             RETURNING *`,
-            [title, description, is_done, todoID, user_id]
+            [text, is_done, todoID, userID]
         );
-        if(result.rows.length === 0){
+        if (result.rows.length === 0) {
             return res.status(404).send("Kullanıcı bulunamadı");
         }
-        res.send(200).json(result.rows[0]);
+        res.status(200).json(result.rows[0]);
 
     } catch (error) {
         console.error(error.message);
@@ -71,24 +81,26 @@ app.put('/api/todos/:id', async (req, res)=>{
 });
 
 
-app.delete('/api/todos/:id', async (req, res)=>{
+app.delete('/api/todos/:id', authenticateToken, async (req, res) => {
     const todoID = parseInt(req.params.id);
-    if(isNaN(todoID)){
-        res.status(400).send("Gecersiz ID");
+    if (isNaN(todoID)) {
+        return res.status(400).send("Gecersiz ID");
     }
+
+    const userID = req.user.id;
 
     try {
         const result = await pool.query(
             `DELETE from todos
             where id = $1 AND user_id = $2
             RETURNING *`,
-            [todoID, user_id]
+            [todoID, userID]
         );
-        if(result.rows.length === 0){
-            res.status(404).send("Kullanıcı bulunamadı");
+        if (result.rows.length === 0) {
+            return res.status(404).send("Kullanıcı bulunamadı");
         }
         res.status(200).send("Kullanıcı başarıyla silindi");
-        
+
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Server Error !");
