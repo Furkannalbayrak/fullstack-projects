@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Register from './Register'
+import axios from 'axios'
 
 function Login() {
 
@@ -10,18 +10,28 @@ function Login() {
     password: ""
   });
 
-  const handleChange = (e) => {
+  const [registerData, setRegisterData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  const handleChangeLogin = (e) => {
     setLoginData({
       ...loginData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleChangeRegister = (e) => {
+    setRegisterData({
+      ...registerData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    // const endpoint = isLogin ? "/api/login" : "/api/register";
-    //   const response = await axios.post(`http://localhost:3000${endpoint}`, formData);
+  const handleSubmitLogin = async (e) => {
+    e.preventDefault();
 
     try {
       const response = await axios.post("http://localhost:3000/api/login", loginData)
@@ -29,6 +39,27 @@ function Login() {
         email: "",
         password: ""
       })
+    } catch (error) {
+      if (error.response) {
+        setErrorMessage(error.response.data);
+      }
+      else {
+        setErrorMessage("Sunucuya Bağlanılamadı");
+      }
+      console.error(error.message);
+    }
+  }
+
+  const handleSubmitRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/register", registerData)
+      setRegisterData({
+        name: "",
+        email: "",
+        password: ""
+      });
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data);
@@ -50,22 +81,73 @@ function Login() {
             }`}
         >
           {showRegister ? (
-            <div>
-              <p>merhabalkarrr</p>
+            <div className='max-w-sm mx-auto text-center bg-white p-8 mt-4'>
+              <h2 className='text-4xl font-extrabold text-center text-gray-600 mb-6'>Hesap Oluştur</h2>
+              <p className='text-center text-gray-600 mb-6'>Görevlerini kolayca ekle, düzenle ve hayatını daha planlı hale getir.</p>
+              <form onSubmit={handleSubmitRegister}>
+                <input
+                  type="text"
+                  name='name'
+                  placeholder='Ad'
+                  value={registerData.name}
+                  onChange={handleChangeRegister}
+                  required
+                  className='w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-500'
+                />
+                <input
+                  type="text"
+                  name='email'
+                  placeholder='Email'
+                  value={registerData.email}
+                  onChange={handleChangeRegister}
+                  required
+                  className='w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-500'
+                />
+                <input
+                  type="password"
+                  name='password'
+                  placeholder='Password'
+                  value={registerData.password}
+                  onChange={handleChangeRegister}
+                  required
+                  className='w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-500'
+                />
+                <button type='submit' className='w-1/2 py-3 bg-red-500 mt-7 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300'>Kayıt Ol</button>
+              </form>
             </div>
           ) : (
-            <div>
-              <h2 className="">Oturum Aç</h2>
-              <p className="">Zaten üyeysen burası senin yerin. Giriş zamanı!</p>
-              <form className="">
-                <input type="text" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button className="">Oturum Aç</button>
+            <div className="max-w-sm mx-auto text-center bg-white p-8 mt-10">
+              <h2 className="text-4xl font-extrabold text-center text-gray-600 mb-6">Oturum Aç</h2>
+              <p className="text-center text-gray-600 mb-6">Zaten üyeysen burası senin yerin. Giriş zamanı!</p>
+              <form onSubmit={handleSubmitLogin}>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  value={loginData.email}
+                  onChange={handleChangeLogin}
+                  required
+                  className="w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-500"
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={loginData.password}
+                  onChange={handleChangeLogin}
+                  required
+                  className="w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-400"
+                />
+                <button
+                  type="submit"
+                  className="w-1/2 py-3 bg-red-500 mt-10 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300"
+                >
+                  Oturum Aç
+                </button>
               </form>
             </div>
           )
           }
-
         </div>
 
         {/* Sağ Panel */}
@@ -73,16 +155,31 @@ function Login() {
           className={`absolute top-0 left-1/2 w-1/2 h-full bg-red-400 transition-transform duration-700 ease-in-out ${showRegister ? "-translate-x-full" : "translate-x-0"
             }`}
         >
-          <h2 className="">Yeni Misin?</h2>
-          <p className="">
-            Hesap oluştur ve aramıza katıl. Görevlerini listelemeye hemen başla.
-          </p>
-          <button
-            onClick={() => setShowRegister(!showRegister)}
-            className=""
-          >
-            {showRegister ? "Giriş Yap" : "Kayıt Ol"}
-          </button>
+          {showRegister ? (
+            <div className='text-white p-8 max-w-sm mx-auto text-center mt-24'>
+              <h2 className='text-4xl font-bold mb-4'>Tekrar Hoş Geldin!</h2>
+              <p className='text-lg mb-6'>Zaten bir hesabın varsa hemen giriş yapabilirsin.</p>
+              <button
+                onClick={() => setShowRegister(!showRegister)}
+                className='w-1/2 py-3 bg-red-400 border-2 border-white text-white font-semibold rounded-full hover:bg-red-500 transition duration-300'
+              >
+                Giriş Yap
+              </button>
+            </div>
+          ) : (
+            <div className="text-white p-8 max-w-sm mx-auto text-center mt-24">
+              <h2 className="text-4xl font-bold mb-4">Yeni Misin?</h2>
+              <p className="text-lg mb-6">Hesap oluştur ve aramıza katıl. Görevlerini listelemeye hemen başla.</p>
+              <button
+                onClick={() => setShowRegister(!showRegister)}
+                className="w-1/2 py-3 bg-red-400 border-2 border-white text-white font-semibold rounded-full hover:bg-red-500 transition duration-300"
+              >
+                Kayıt Ol
+              </button>
+            </div>
+          )
+          }
+
         </div>
 
       </div>
