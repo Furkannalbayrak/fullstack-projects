@@ -6,6 +6,7 @@ function Register() {
 
   const [showRegister, setShowRegister] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
@@ -33,6 +34,7 @@ function Register() {
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
     try {
       const response = await axios.post("http://localhost:3000/api/login", loginData)
@@ -40,6 +42,8 @@ function Register() {
         email: "",
         password: ""
       })
+      setSuccessMessage(response.data.message);
+      localStorage.setItem("token", response.data.token);
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data);
@@ -61,6 +65,7 @@ function Register() {
         email: "",
         password: ""
       });
+      setSuccessMessage(response.data);
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data);
@@ -74,6 +79,11 @@ function Register() {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center p-10">
+      
+      {successMessage && (
+        <p className='absolute left-1/2 transform -translate-x-1/2 top-8 text-lg p-4 bg-green-400 rounded-xl w-[600px] text-center'>{successMessage}</p>
+      )}
+      
       <div className="relative w-full max-w-4xl h-[500px] shadow-2xl rounded-3xl overflow-hidden">
 
         {/* Sol Panel */}
@@ -96,7 +106,7 @@ function Register() {
                   className='w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-500'
                 />
                 <input
-                  type="text"
+                  type="email"
                   name='email'
                   placeholder='Email'
                   value={registerData.email}
@@ -111,6 +121,7 @@ function Register() {
                   value={registerData.password}
                   onChange={handleChangeRegister}
                   required
+                  minLength={5}
                   className='w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-500'
                 />
                 <button type='submit' className='w-1/2 py-3 bg-red-500 mt-7 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300'>Kayıt Ol</button>
@@ -120,9 +131,9 @@ function Register() {
             <div className="max-w-sm mx-auto text-center bg-white p-8 mt-10">
               <h2 className="text-4xl font-extrabold text-center text-gray-600 mb-6">Oturum Aç</h2>
               <p className="text-center text-gray-600 mb-6">Zaten üyeysen burası senin yerin. Giriş zamanı!</p>
-              <form onSubmit={handleSubmitLogin}>
+              <form onSubmit={handleSubmitLogin} className='relative'>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   placeholder="Email"
                   value={loginData.email}
@@ -139,6 +150,9 @@ function Register() {
                   required
                   className="w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-400"
                 />
+                {errorMessage && (
+                  <p className='absolute text-red-500 text-lg left-1/2 transform -translate-x-1/2 mt-1 w-full'>{errorMessage}!</p>
+                )}
                 <button
                   type="submit"
                   className="w-1/2 py-3 bg-red-500 mt-10 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300"
