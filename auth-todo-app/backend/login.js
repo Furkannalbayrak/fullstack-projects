@@ -13,7 +13,7 @@ router.post('/login', async (req, res) => {
     try {
         const result = await pool.query(
             `SELECT * from users
-                where email = $1`,
+             where email = $1`,
             [email]
         )
         const user = result.rows[0];
@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
             { expiresIn: "1h" }
         );
 
-        res.json({ token })
+        res.status(201).json({message: "Oturum başarıyla açıldı", token});
 
     } catch (error) {
         console.error(error.message);
