@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
             RETURNING *`,
             [name, email, hashedPassword]
         );
-        res.status(201).send("Kayıt başarıyla gerçekleşti");
+        res.status(201).send("Kayıt başarıyla gerçekleşti. Oturum açarak hesabınıza girebilirsiniz");
 
     } catch (error) {
         console.error(error.message);
