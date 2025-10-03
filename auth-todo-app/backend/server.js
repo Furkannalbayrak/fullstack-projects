@@ -86,7 +86,6 @@ app.delete('/api/todos/:id', authenticateToken, async (req, res) => {
     if (isNaN(todoID)) {
         return res.status(400).send("Gecersiz ID");
     }
-
     const userID = req.user.id;
 
     try {
@@ -99,7 +98,7 @@ app.delete('/api/todos/:id', authenticateToken, async (req, res) => {
         if (result.rows.length === 0) {
             return res.status(404).send("Kullanıcı bulunamadı");
         }
-        res.status(200).send("Kullanıcı başarıyla silindi");
+        res.status(200).send("Todo başarıyla silindi");
 
     } catch (error) {
         console.error(error.message);
