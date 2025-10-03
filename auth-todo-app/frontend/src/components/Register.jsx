@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
 
+  const navigate = useNavigate();
   const [showRegister, setShowRegister] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -44,6 +45,9 @@ function Register() {
       })
       setSuccessMessage(response.data.message);
       localStorage.setItem("token", response.data.token);
+
+      navigate("/home");
+
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data);
@@ -79,11 +83,11 @@ function Register() {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center p-10">
-      
+
       {successMessage && (
         <p className='absolute left-1/2 transform -translate-x-1/2 top-8 text-lg p-4 bg-green-400 rounded-xl w-[600px] text-center'>{successMessage}</p>
       )}
-      
+
       <div className="relative w-full max-w-4xl h-[500px] shadow-2xl rounded-3xl overflow-hidden">
 
         {/* Sol Panel */}
