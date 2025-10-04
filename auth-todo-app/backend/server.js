@@ -52,22 +52,23 @@ app.post('/api/todos', authenticateToken, async (req, res) => {
     }
 });
 
+
 app.put('/api/todos/:id', authenticateToken, async (req, res) => {
     const todoID = parseInt(req.params.id);
     if (isNaN(todoID)) {
         return res.status(400).send("Gecersiz ID");
     }
 
-    const { text, is_done } = req.body;
+    const { is_done } = req.body;
     const userID = req.user.id;
 
     try {
         const result = await pool.query(
             `UPDATE todos
-            set text = $1, is_done = $2, updated_at = now()
-            where id =  $3 AND user_id = $4
+            set is_done = $1, updated_at = now()
+            where id =  $2 AND user_id = $3
             RETURNING *`,
-            [text, is_done, todoID, userID]
+            [is_done, todoID, userID]
         );
         if (result.rows.length === 0) {
             return res.status(404).send("Kullanıcı bulunamadı");
