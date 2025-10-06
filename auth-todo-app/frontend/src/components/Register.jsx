@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -18,6 +18,16 @@ function Register() {
     email: "",
     password: ""
   });
+
+  useEffect(() => {
+    if (successMessage || errorMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+        setErrorMessage("");
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage, errorMessage]);
 
   const handleChangeLogin = (e) => {
     setLoginData({
@@ -92,11 +102,11 @@ function Register() {
 
         {/* Sol Panel */}
         <div
-          className={`absolute top-0 left-0 w-1/2 h-full bg-white transition-transform duration-700 ease-in-out ${showRegister ? "translate-x-full" : "translate-x-0"
+          className={`absolute top-0 left-0 md:w-1/2 w-full h-full bg-white transition-transform duration-700 ease-in-out ${showRegister ? "translate-x-full" : "translate-x-0"
             }`}
         >
           {!showRegister ? (
-            <div className='max-w-sm mx-auto text-center bg-white p-8 mt-4'>
+            <div className='max-w-sm mx-auto text-center bg-white p-6 mt-4'>
               <h2 className='text-4xl font-extrabold text-center text-gray-600 mb-6'>Hesap Oluştur</h2>
               <p className='text-center text-gray-600 mb-6'>Görevlerini kolayca ekle, düzenle ve hayatını daha planlı hale getir.</p>
               <form onSubmit={handleSubmitRegister}>
@@ -128,7 +138,10 @@ function Register() {
                   minLength={5}
                   className='w-full px-4 py-[10px] mt-4 bg-gray-200 border border-gray-300 rounded-md focus:outline-none border-none focus:ring-2 focus:ring-indigo-500'
                 />
-                <button type='submit' className='w-1/2 py-3 bg-red-500 mt-7 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300'>Kayıt Ol</button>
+                {errorMessage && (
+                  <p className='absolute text-red-500 text-lg left-1/2 transform -translate-x-1/2 w-full'>{errorMessage}!</p>
+                )}
+                <button type='submit' className='w-1/2 py-3 bg-red-500 mt-8 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300'>Kayıt Ol</button>
               </form>
             </div>
           ) : (
@@ -171,7 +184,7 @@ function Register() {
 
         {/* Sağ Panel */}
         <div
-          className={`absolute top-0 left-1/2 w-1/2 h-full bg-red-400 transition-transform duration-700 ease-in-out ${showRegister ? "-translate-x-full" : "translate-x-0"
+          className={`absolute hidden md:block top-0 left-1/2 w-1/2 h-full bg-red-400 transition-transform duration-700 ease-in-out ${showRegister ? "-translate-x-full" : "translate-x-0"
             }`}
         >
           {!showRegister ? (
