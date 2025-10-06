@@ -7,9 +7,9 @@ const router = Router();
 router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         const result = await pool.query(
             `INSERT INTO users(name, email, password_hash)
             values($1, $2, $3)
@@ -20,7 +20,12 @@ router.post('/register', async (req, res) => {
 
     } catch (error) {
         console.error(error.message);
-        res.status(400).send("Bu email zaten kayıtlı");
+
+        if (error.code === "23505") {
+            return res.status(400).json("Bu kullanıcı zaten mevcut")
+        }
+
+        res.status(500).json("Sunucu hatası. Lütfen daha sonra tekrar deneyin.");
     }
 });
 
