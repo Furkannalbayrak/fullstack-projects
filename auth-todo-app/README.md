@@ -23,10 +23,13 @@ Projede güncel ve endüstri standardı teknolojiler kullanılmıştır.
 
 ### Backend (Arka Yüz)
 * **Node.js & Express:** Güçlü ve ölçeklenebilir sunucu mimarisi.
-* **PostgreSQL:** Kullanıcı ve görev verilerini tutan güvenilir ilişkisel veritabanı.
-* **pg (node-postgres):** Node.js ile PostgreSQL arasındaki bağlantı kütüphanesi.
-* **JWT & Bcrypt:** Güvenlik, kimlik doğrulama ve şifreleme işlemleri.
+* **JWT (JSON Web Token):** Güvenli oturum yönetimi ve kimlik doğrulama için.
+* **Bcrypt:** Parolaların güvenli bir şekilde hashlenerek saklanması için.
 * **Dotenv:** Hassas verileri (API anahtarları vb.) yönetmek için.
+
+### Veritabanı
+* **PostgreSQL:** Kullanıcı ve görev verilerini tutan, güvenilir ve güçlü ilişkisel veritabanı.
+* **pg (node-postgres):** Node.js uygulaması ile PostgreSQL veritabanı arasındaki iletişimi sağlayan sürücü..
 
 ## 📂 Proje Yapısı
 
