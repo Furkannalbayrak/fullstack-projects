@@ -28,6 +28,38 @@ Projede güncel ve endüstri standardı teknolojiler kullanılmıştır.
 * **JWT & Bcrypt:** Güvenlik, kimlik doğrulama ve şifreleme işlemleri.
 * **Dotenv:** Hassas verileri (API anahtarları vb.) yönetmek için.
 
+## 📂 Proje Yapısı
+
+Proje, **backend** ve **frontend** olmak üzere iki ana klasörden oluşan temiz bir mimariye sahiptir.
+
+```text
+auth-todo-app/
+├── backend/
+│   ├── middleware/
+│   │   └── authenticateToken.js  # JWT doğrulama ara katmanı
+│   ├── database.js               # Veritabanı bağlantı ayarları
+│   ├── server.js                 # Ana sunucu dosyası
+│   ├── login.js                  # Giriş işlemleri
+│   ├── register.js               # Kayıt işlemleri
+│   └── .env                      # Backend çevre değişkenleri
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/           # Sayfa bileşenleri
+│   │   │   ├── AuthForm.jsx
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── Register.jsx
+│   │   ├── config/
+│   │   │   └── RouterConfig.jsx  # Yönlendirme yapılandırması
+│   │   ├── App.jsx               # Ana uygulama bileşeni
+│   │   └── main.jsx              # React giriş noktası
+│   ├── tailwind.config.js        # CSS yapılandırması
+│   └── vite.config.js            # Vite yapılandırması
+│
+└── README.md
+
 ## ⚙️ Kurulum ve Çalıştırma
 
 Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz.
