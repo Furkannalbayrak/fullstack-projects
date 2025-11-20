@@ -63,3 +63,6 @@ auth-todo-app/
 │
 └── README.md
 
+## 📜 License
+Bu proje MIT lisansı altında sunulmaktadır. Daha fazla bilgi için LICENSE dosyasına göz atabilirsiniz.
+
