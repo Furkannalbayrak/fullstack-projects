@@ -2,7 +2,6 @@
 
 Bu proje; modern, güvenli ve mobil uyumlu bir Yapılacaklar Listesi (Todo) uygulamasıdır. PERN yığını (PostgreSQL, Express, React, Node.js) kullanılarak geliştirilmiştir. Kullanıcıların kayıt olabildiği, güvenli bir şekilde giriş yapabildiği ve günlük görevlerini yönetebildiği tam kapsamlı bir full-stack projesidir.
 
-![Proje Görseli](https://via.placeholder.com/1000x400?text=Proje+Ekran+Goruntusu)
 ## 🚀 Özellikler
 
 * **Kullanıcı Kimlik Doğrulama (Auth):** **JWT (JSON Web Tokens)** ve **Bcrypt** kullanılarak geliştirilmiş güvenli kayıt ve giriş sistemi. Parolalar veritabanında şifrelenmiş olarak saklanır.
