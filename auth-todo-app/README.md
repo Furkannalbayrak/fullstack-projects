@@ -1,12 +1,39 @@
-# React + Vite
+# 📝 Full Stack Auth Todo Uygulaması
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu proje; modern, güvenli ve mobil uyumlu bir Yapılacaklar Listesi (Todo) uygulamasıdır. PERN yığını (PostgreSQL, Express, React, Node.js) kullanılarak geliştirilmiştir. Kullanıcıların kayıt olabildiği, güvenli bir şekilde giriş yapabildiği ve günlük görevlerini yönetebildiği tam kapsamlı bir full-stack projesidir.
 
-Currently, two official plugins are available:
+![Proje Görseli](https://via.placeholder.com/1000x400?text=Proje+Ekran+Goruntusu)
+## 🚀 Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Kullanıcı Kimlik Doğrulama (Auth):** **JWT (JSON Web Tokens)** ve **Bcrypt** kullanılarak geliştirilmiş güvenli kayıt ve giriş sistemi. Parolalar veritabanında şifrelenmiş olarak saklanır.
+* **Görev Yönetimi:** Kullanıcılar kendi görevlerini ekleyebilir, okuyabilir, güncelleyebilir ve silebilir (CRUD işlemleri).
+* **Responsive (Duyarlı) Tasarım:** **Tailwind CSS** sayesinde hem mobilde hem de masaüstünde kusursuz görünüm.
+* **Korumalı Rotalar (Protected Routes):** Giriş yapmamış kullanıcıların yönetim paneline erişmesi engellenir.
+* **Modern Durum Yönetimi:** React Hooks kullanılarak verimli veri akışı sağlanır.
 
-## Expanding the ESLint configuration
+## 🛠️ Teknoloji Yığını
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Projede güncel ve endüstri standardı teknolojiler kullanılmıştır.
+
+### Frontend (Ön Yüz)
+* **React (Vite):** Hızlı ve interaktif kullanıcı arayüzü geliştirmek için.
+* **Tailwind CSS:** Hızlı, esnek ve modern stil işlemleri için.
+* **Axios:** Backend API ile haberleşmek ve HTTP istekleri atmak için.
+* **React Router DOM:** Sayfalar arası hızlı geçiş (Routing) için.
+* **React Icons:** Arayüzü zenginleştiren ikon seti için.
+
+### Backend (Arka Yüz)
+* **Node.js & Express:** Güçlü ve ölçeklenebilir sunucu mimarisi.
+* **PostgreSQL:** Kullanıcı ve görev verilerini tutan güvenilir ilişkisel veritabanı.
+* **pg (node-postgres):** Node.js ile PostgreSQL arasındaki bağlantı kütüphanesi.
+* **JWT & Bcrypt:** Güvenlik, kimlik doğrulama ve şifreleme işlemleri.
+* **Dotenv:** Hassas verileri (API anahtarları vb.) yönetmek için.
+
+## ⚙️ Kurulum ve Çalıştırma
+
+Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz.
+
+### 1. Projeyi Klonlayın
+```bash
+git clone [https://github.com/KULLANICI_ADINIZ/auth-todo-app.git](https://github.com/KULLANICI_ADINIZ/auth-todo-app.git)
+cd auth-todo-app
