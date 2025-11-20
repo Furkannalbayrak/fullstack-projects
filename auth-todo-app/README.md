@@ -63,11 +63,3 @@ auth-todo-app/
 │
 └── README.md
 
-## ⚙️ Kurulum ve Çalıştırma
-
-Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz.
-
-### 1. Projeyi Klonlayın
-```bash
-git clone [https://github.com/KULLANICI_ADINIZ/auth-todo-app.git](https://github.com/KULLANICI_ADINIZ/auth-todo-app.git)
-cd auth-todo-app
