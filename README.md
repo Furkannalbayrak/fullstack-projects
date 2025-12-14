@@ -9,7 +9,7 @@ Her proje; temiz kod yapısı, modüler mimari ve responsive tasarım prensipler
 Aşağıdaki tabloda bu depo içerisinde yer alan projelerin kısa özetlerini bulabilirsiniz. Detaylı bilgi için ilgili projenin klasörüne gidebilirsiniz.
 
 | Proje Adı | Açıklama | Temel Teknolojiler |
-|-----------|----------|----------------------|----------|
+|-----------|----------|--------------------|
 | 🔐 **[Auth Todo App](./auth-todo-app)** | Güvenli kimlik doğrulama sistemine sahip gelişmiş görev yöneticisi. | JWT, Bcrypt, React, Node.js, PostgreSQL, Tailwind CSS |
 | 🏢 **[User Dept. Management](./user-department-management-system)** | Şirketler için departman ve personel yönetimini sağlayan yönetim paneli. | React, Node.js, PostgreSQL, Tailwind CSS |
 
