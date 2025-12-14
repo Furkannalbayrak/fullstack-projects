@@ -11,7 +11,7 @@ Aşağıdaki tabloda bu depo içerisinde yer alan projelerin kısa özetlerini b
 | Proje Adı | Açıklama | Temel Teknolojiler |
 |-----------|----------|--------------------|
 | 🔐 **[Auth Todo App](./auth-todo-app)** | Güvenli kimlik doğrulama sistemine sahip gelişmiş görev yöneticisi. | JWT, Bcrypt, React, Node.js, PostgreSQL, Tailwind CSS |
-| 🏢 **[User Dept. Management](./user-department-management-system)** | Şirketler için departman ve personel yönetimini sağlayan yönetim paneli. | React, Node.js, PostgreSQL, Tailwind CSS |
+| 🏢 **[User Department Management](./user-department-management-system)** | Şirketler için departman ve personel yönetimini sağlayan yönetim paneli. | React, Node.js, PostgreSQL, Tailwind CSS |
 
 ## 💻 Kullanılan Teknolojiler
 
