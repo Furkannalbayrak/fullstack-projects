@@ -1,6 +1,6 @@
 # 🚀 Full Stack Projeler Koleksiyonu
 
-Bu depo, modern web teknolojileri kullanılarak geliştirilmiş, uçtan uca (full-stack) web uygulamalarını barındırmaktadır. Projeler ağırlıklı olarak **PERN Stack** (PostgreSQL, Express, React, Node.js) mimarisi üzerine inşa edilmiştir.
+Bu depo, modern web teknolojileri kullanılarak geliştirilmiş, uçtan uca (full-stack) web uygulamalarını barındırmaktadır. Burada hem frontend hem de backend yeteneklerimi sergileyen uygulamaları bulabilirsiniz.
 
 Her proje; temiz kod yapısı, modüler mimari ve responsive tasarım prensipleri gözetilerek hazırlanmıştır.
 
@@ -8,10 +8,10 @@ Her proje; temiz kod yapısı, modüler mimari ve responsive tasarım prensipler
 
 Aşağıdaki tabloda bu depo içerisinde yer alan projelerin kısa özetlerini bulabilirsiniz. Detaylı bilgi için ilgili projenin klasörüne gidebilirsiniz.
 
-| Proje Adı | Açıklama | Öne Çıkan Özellikler | Bağlantı |
+| Proje Adı | Açıklama | Temel Teknolojiler |
 |-----------|----------|----------------------|----------|
-| **Auth Todo App** | Güvenli kimlik doğrulama sistemine sahip gelişmiş görev yöneticisi. | JWT Auth, Bcrypt, Protected Routes, CRUD | [📂 İncele](./auth-todo-app) |
-| **User & Dept. System** | Şirketler için departman ve personel yönetimini sağlayan yönetim paneli. | Gelişmiş Filtreleme, İlişkisel Veritabanı, Modüler Yapı | [📂 İncele](./user-department-management-system) |
+| 🔐 **[Auth Todo App](./auth-todo-app)** | Güvenli kimlik doğrulama sistemine sahip gelişmiş görev yöneticisi. | JWT, Bcrypt, React, Node.js, PostgreSQL, Tailwind CSS |
+| 🏢 **[User Dept. Management](./user-department-management-system)** | Şirketler için departman ve personel yönetimini sağlayan yönetim paneli. | React, Node.js, PostgreSQL, Tailwind CSS |
 
 ## 🛠️ Kullanılan Teknolojiler
 
@@ -25,11 +25,10 @@ Bu depodaki projelerde güncel ve endüstri standardı araçlar kullanılmışt�
 ### Backend
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
 ### Veritabanı
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
 
----
-⭐ **Bu projeleri beğendiyseniz repoya yıldız vermeyi unutmayın!**
+## 📜 License
+Bu proje MIT lisansı altında sunulmaktadır. Daha fazla bilgi için LICENSE dosyasına göz atabilirsiniz.
